@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color" content="#eaf4ec">
+
+<title>LactoCheck | Eat with Confidence</title>
+
+<style>
+
+:root {
+
+  --green: #32734c;
+
+  --dark: #204b32;
+
+  --light: #eaf4ec;
+
+  --bg: #f7faf7;
+
+  --text: #26382c;
+
+  --muted: #718075;
+
+  --white: #ffffff;
+
+}
+
+* { box-sizing: border-box; }
+
+body {
+
+  margin: 0;
+
+  font-family: Arial, sans-serif;
+
+  background: var(--bg);
+
+  color: var(--text);
+
+}
+
+header {
+
+  background: var(--white);
+
+  padding: 18px 7%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  border-bottom: 1px solid #e5eee6;
+
+}
+
+.logo {
+
+  font-size: 24px;
+
+  font-weight: 800;
+
+  color: var(--green);
+
+}
+
+.logo span { color: #9bbf91; }
+
+nav { display: flex; gap: 10px; flex-wrap: wrap; }
+
+nav button {
+
+  border: 0;
+
+  background: transparent;
+
+  color: var(--text);
+
+  padding: 10px;
+
+  cursor: pointer;
+
+  font-size: 14px;
+
+  border-radius: 8px;
+
+}
+
+nav button.active, nav button:hover {
+
+  background: var(--light);
+
+  color: var(--green);
+
+}
+
+main {
+
+  max-width: 1000px;
+
+  margin: auto;
+
+  padding: 35px 20px;
+
+}
+
+.hero {
+
+  background: linear-gradient(135deg,#e5f2e7,#f4f8ed);
+
+  border-radius: 22px;
+
+  padding: 40px 25px;
+
+  text-align: center;
+
+}
+
+.hero h1 {
+
+  color: var(--dark);
+
+  font-size: clamp(30px,5vw,46px);
+
+  margin: 10px 0;
+
+}
+
+.hero p { color: var(--muted); }
+
+.search {
+
+  display: flex;
+
+  gap: 10px;
+
+  max-width: 600px;
+
+  margin: 25px auto 0;
+
+}
+
+input, textarea {
+
+  width: 100%;
+
+  padding: 14px;
+
+  border: 1px solid #dce7dd;
+
+  border-radius: 10px;
+
+  font-size: 16px;
+
+  background: white;
+
+}
+
+button.primary {
+
+  background: var(--green);
+
+  color: white;
+
+  border: 0;
+
+  padding: 13px 22px;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  font-weight: bold;
+
+}
+
+button.primary:hover { background: var(--dark); }
+
+.section { margin-top: 35px; }
+
+.section h2 { color: var(--dark); }
+
+.cards {
+
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+
+  gap: 16px;
+
+}
+
+.card {
+
+  background: white;
+
+  border: 1px solid #e5eee6;
+
+  border-radius: 15px;
+
+  padding: 20px;
+
+}
+
+.card h3 { margin-top: 5px; color: var(--dark); }
+
+.card p { color: var(--muted); line-height: 1.6; }
+
+.result {
+
+  margin-top: 20px;
+
+  padding: 20px;
+
+  background: white;
+
+  border-radius: 14px;
+
+  border: 1px solid #dce7dd;
+
+  line-height: 1.6;
+
+}
+
+.tag {
+
+  display: inline-block;
+
+  border-radius: 20px;
+
+  padding: 5px 12px;
+
+  font-size: 13px;
+
+  font-weight: bold;
+
+  background: #f0f1e8;
+
+}
+
+.safe { color: #246b40; background: #e5f5e8; }
+
+.warning { color: #986000; background: #fff2d6; }
+
+.danger { color: #a32e2e; background: #fde9e9; }
+
+.page { display: none; }
+
+.page.active { display: block; }
+
+.item {
+
+  padding: 13px;
+
+  background: white;
+
+  border-bottom: 1px solid #e5eee6;
+
+}
+
+footer {
+
+  text-align: center;
+
+  padding: 30px 15px;
+
+  color: var(--muted);
+
+  font-size: 13px;
+
+}
+
+@media(max-width:600px) {
+
+  header { flex-direction: column; gap: 12px; }
+
+  nav { justify-content: center; }
+
+  .search { flex-direction: column; }
+
+  .hero { padding: 30px 16px; }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+  <div class="logo">Lacto<span>Check</span> 🌿</div>
+
+  <nav>
+
+    <button class="active" onclick="showPage('home',this)">Home</button>
+
+    <button onclick="showPage('alternatives',this)">Alternatives</button>
+
+    <button onclick="showPage('guide',this)">Ingredient Guide</button>
+
+    <button onclick="showPage('diary',this)">Food Diary</button>
+
+  </nav>
+
+</header>
+
+<main>
+
+<section id="home" class="page active">
+
+  <div class="hero">
+
+    <div style="font-size:45px">🥛🌿</div>
+
+    <h1>Eat with Confidence.</h1>
+
+    <p>Discover what's in your food. Make informed choices.</p>
+
+    <div class="search">
+
+      <input id="foodSearch" placeholder="Search a food... e.g. milk, bread">
+
+      <button class="primary" onclick="checkFood()">Check Food</button>
+
+    </div>
+
+  </div>
+
+  <div id="result"></div>
+
+  <div class="section">
+
+    <h2>Explore LactoCheck</h2>
+
+    <div class="cards">
+
+      <div class="card">
+
+        <h3>🔎 Food Checker</h3>
+
+        <p>Search foods and identify ingredients that may contain lactose.</p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>🥥 Alternatives</h3>
+
+        <p>Discover alternatives to common dairy products.</p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>📖 Ingredient Guide</h3>
+
+        <p>Learn how to recognize milk-related ingredients.</p>
+
+      </div>
+
+      <div class="card">
+
+        <h3>📝 Food Diary</h3>
+
+        <p>Keep track of meals and symptoms.</p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section id="alternatives" class="page">
+
+  <h2>Dairy-Free Alternatives 🌱</h2>
+
+  <p>Explore options that may suit a lactose-free diet. Always check product labels.</p>
+
+  <div class="cards">
+
+    <div class="card"><h3>🥛 Soy Milk</h3><p>A plant-based alternative to regular milk.</p></div>
+
+    <div class="card"><h3>🥥 Coconut Milk</h3><p>A plant-based option for cooking and drinks.</p></div>
+
+    <div class="card"><h3>🌾 Oat Milk</h3><p>A plant-based alternative for cereals and coffee.</p></div>
+
+    <div class="card"><h3>🌰 Almond Milk</h3><p>A nut-based milk alternative.</p></div>
+
+    <div class="card"><h3>🧀 Lactose-Free Milk Products</h3><p>Dairy products processed to break down lactose. Still contain milk proteins.</p></div>
+
+  </div>
+
+</section>
+
+<section id="guide" class="page">
+
+  <h2>Ingredient Guide 📖</h2>
+
+  <p>Learn which ingredients deserve attention when checking food labels.</p>
+
+  <div class="cards">
+
+    <div class="card"><h3>Lactose</h3><p>Milk sugar. Its presence means the product contains lactose.</p></div>
+
+    <div class="card"><h3>Milk Powder</h3><p>Usually contains lactose. Check the product's ingredients.</p></div>
+
+    <div class="card"><h3>Whey Powder</h3><p>Often contains lactose. Amounts vary by product.</p></div>
+
+    <div class="card"><h3>Casein / Caseinate</h3><p>Milk proteins. They do not necessarily indicate lactose, but are relevant for milk allergy.</p></div>
+
+    <div class="card"><h3>Milk Solids</h3><p>Milk-derived ingredients that may contain lactose.</p></div>
+
+    <div class="card"><h3>Milk</h3><p>Ordinary milk naturally contains lactose.</p></div>
+
+  </div>
+
+</section>
+
+<section id="diary" class="page">
+
+  <h2>My Food Diary 📝</h2>
+
+  <p>Record your meals and any symptoms you experience.</p>
+
+  <div class="card">
+
+    <label>Food eaten</label>
+
+    <input id="meal" placeholder="What did you eat?">
+
+    <br><br>
+
+    <label>Symptoms or observations</label>
+
+    <textarea id="symptoms" placeholder="Describe how you felt..." rows="3"></textarea>
+
+    <br><br>
+
+    <button class="primary" onclick="saveMeal()">Save Entry</button>
+
+  </div>
+
+  <div class="section">
+
+    <h3>Previous Entries</h3>
+
+    <div id="entries"></div>
+
+  </div>
+
+</section>
+
+</main>
+
+<footer>
+
+  <strong>LactoCheck 🌿</strong>
+
+  <p>Helping people make informed food choices.</p>
+
+  <p>Disclaimer: This app provides general educational information, not medical advice. Check product labels and consult a healthcare professional when needed.</p>
+
+</footer>
+
+<script>
+
+function showPage(id,button) {
+
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+
+  document.getElementById(id).classList.add('active');
+
+  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+
+  button.classList.add('active');
+
+  if(id==='diary') renderEntries();
+
+}
+
+const foods = {
+
+  "milk": {
+
+    status:"danger",
+
+    title:"Contains Lactose",
+
+    info:"Ordinary cow's milk naturally contains lactose."
+
+  },
+
+  "cheese": {
+
+    status:"warning",
+
+    title:"Check the Type",
+
+    info:"Some cheeses contain lactose, while aged hard cheeses may contain very little."
+
+  },
+
+  "yogurt": {
+
+    status:"warning",
+
+    title:"May Contain Lactose",
+
+    info:"Regular yogurt contains varying amounts of lactose."
+
+  },
+
+  "ice cream": {
+
+    status:"danger",
+
+    title:"Usually Contains Lactose",
+
+    info:"Regular dairy ice cream commonly contains lactose."
+
+  },
+
+  "butter": {
+
+    status:"warning",
+
+    title:"May Contain Small Amounts",
+
+    info:"Butter generally contains very little lactose, but amounts vary."
+
+  },
+
+  "soy milk": {
+
+    status:"safe",
+
+    title:"No Lactose Ingredients Expected",
+
+    info:"Pure soy milk is plant-based and naturally lactose-free. Check for added dairy ingredients."
+
+  },
+
+  "oat milk": {
+
+    status:"safe",
+
+    title:"No Lactose Ingredients Expected",
+
+    info:"Pure oat milk is plant-based. Check the ingredient label for added dairy."
+
+  },
+
+  "almond milk": {
+
+    status:"safe",
+
+    title:"No Lactose Ingredients Expected",
+
+    info:"Pure almond milk is plant-based. Check the ingredient label for added dairy."
+
+  }
+
+};
+
+function checkFood() {
+
+  const name = document.getElementById('foodSearch').value.trim().toLowerCase();
+
+  const result = document.getElementById('result');
+
+  if(!name) {
+
+    result.innerHTML='<div class="result">Please enter a food name.</div>';
+
+    return;
+
+  }
+
+  const food = foods[name];
+
+  if(food) {
+
+    result.innerHTML=`
+
+      <div class="result">
+
+        <span class="tag ${food.status}">${food.title}</span>
+
+        <h3>${name.charAt(0).toUpperCase()+name.slice(1)}</h3>
+
+        <p>${food.info}</p>
+
+        <small>Based on general food information, not a verified product label.</small>
+
+      </div>`;
+
+  } else {
+
+    result.innerHTML=`
+
+      <div class="result">
+
+        <span class="tag warning">Uncertain</span>
+
+        <h3>${escapeHTML(name)}</h3>
+
+        <p>We don't have enough information about this food. Check its ingredient label for lactose and milk-derived ingredients.</p>
+
+      </div>`;
+
+  }
+
+}
+
+function escapeHTML(text) {
+
+  return text.replace(/[&<>"']/g, c => ({
+
+    '&':'&amp;','<':'&lt;','>':'&gt;',
+
+    '"':'&quot;',"'":'&#39;'
+
+  })[c]);
+
+}
+
+document.getElementById('foodSearch').addEventListener('keydown',e=>{
+
+  if(e.key==='Enter') checkFood();
+
+});
+
+function getEntries() {
+
+  try {
+
+    return JSON.parse(localStorage.getItem('lactoDiary') || '[]');
+
+  } catch {
+
+    return [];
+
+  }
+
+}
+
+function saveMeal() {
+
+  const meal=document.getElementById('meal').value.trim();
+
+  const symptoms=document.getElementById('symptoms').value.trim();
+
+  if(!meal) {
+
+    alert('Please enter a food first.');
+
+    return;
+
+  }
+
+  const entries=getEntries();
+
+  entries.unshift({
+
+    meal:meal,
+
+    symptoms:symptoms,
+
+    date:new Date().toLocaleString()
+
+  });
+
+  localStorage.setItem('lactoDiary',JSON.stringify(entries));
+
+  document.getElementById('meal').value='';
+
+  document.getElementById('symptoms').value='';
+
+  renderEntries();
+
+  alert('Entry saved!');
+
+}
+
+function renderEntries() {
+
+  const entries=getEntries();
+
+  const container=document.getElementById('entries');
+
+  if(!entries.length) {
+
+    container.innerHTML='<p>No entries yet. Start recording your meals!</p>';
+
+    return;
+
+  }
+
+  container.innerHTML=entries.map((entry,index)=>`
+
+    <div class="item">
+
+      <strong>${escapeHTML(entry.meal)}</strong>
+
+      <p>${escapeHTML(entry.symptoms || 'No symptoms recorded')}</p>
+
+      <small>${escapeHTML(entry.date)}</small>
+
+      <button onclick="deleteEntry(${index})" style="float:right;color:#a32e2e;border:0;background:none;cursor:pointer">Delete</button>
+
+    </div>
+
+  `).join('');
+
+}
+
+function deleteEntry(index) {
+
+  const entries=getEntries();
+
+  entries.splice(index,1);
+
+  localStorage.setItem('lactoDiary',JSON.stringify(entries));
+
+  renderEntries();
+
+}
+
+</script>
+
+</body>
+
+</html>

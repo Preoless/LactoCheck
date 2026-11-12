@@ -26,23 +26,25 @@
 
   --bg:#f7faf7;
 
-  --text:#26382c;
+  --white:#ffffff;
+
+  --text:#24352a;
 
   --muted:#718075;
 
-  --white:#fff;
+  --border:#dce8de;
 
-  --border:#e3ebe4;
+  --red:#c94c4c;
 
-  --yellow:#fff2d6;
+  --yellow:#d69b28;
 
-  --red:#fde9e9;
+  --shadow:0 5px 20px rgba(32,75,50,.07);
 
 }
 
-* { box-sizing:border-box; }
+*{box-sizing:border-box}
 
-body {
+body{
 
   margin:0;
 
@@ -54,29 +56,41 @@ body {
 
 }
 
-header {
+header{
 
-  background:white;
-
-  padding:16px 6%;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  flex-wrap:wrap;
-
-  gap:15px;
+  background:var(--white);
 
   border-bottom:1px solid var(--border);
 
+  position:sticky;
+
+  top:0;
+
+  z-index:10;
+
 }
 
-.logo {
+.header-inner{
 
-  font-size:25px;
+  max-width:1100px;
+
+  margin:auto;
+
+  padding:15px 20px;
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  gap:15px;
+
+}
+
+.logo{
+
+  font-size:23px;
 
   font-weight:800;
 
@@ -84,127 +98,163 @@ header {
 
 }
 
-.logo span { color:#9bbf91; }
+.logo span{color:var(--dark)}
 
-nav {
+nav{
 
   display:flex;
 
-  flex-wrap:wrap;
+  gap:7px;
 
-  gap:5px;
+  overflow-x:auto;
+
+  padding:0 15px 12px;
+
+  max-width:1100px;
+
+  margin:auto;
 
 }
 
-nav button {
+nav button{
 
   border:0;
 
-  background:transparent;
+  background:#f0f5f0;
 
-  padding:10px 12px;
+  color:var(--dark);
 
-  border-radius:9px;
+  padding:10px 14px;
 
-  color:var(--text);
+  border-radius:20px;
+
+  white-space:nowrap;
 
   cursor:pointer;
 
-  font-size:14px;
+  font-weight:600;
 
 }
 
-nav button.active,
+nav button.active,nav button:hover{
 
-nav button:hover {
+  background:var(--green);
 
-  background:var(--light);
+  color:white;
+
+}
+
+main{
+
+  max-width:1050px;
+
+  margin:25px auto;
+
+  padding:0 18px;
+
+}
+
+.page{display:none}
+
+.page.active{display:block}
+
+.hero{
+
+  background:linear-gradient(135deg,#e3f2e6,#f4faf4);
+
+  padding:35px 25px;
+
+  border-radius:22px;
+
+  margin-bottom:25px;
+
+}
+
+.hero h1{
+
+  color:var(--dark);
+
+  font-size:clamp(30px,6vw,46px);
+
+  margin:0 0 12px;
+
+}
+
+.hero p{
+
+  color:#52685a;
+
+  line-height:1.7;
+
+  max-width:650px;
+
+}
+
+h2{color:var(--dark)}
+
+h3{margin-top:0}
+
+p{line-height:1.6}
+
+.card{
+
+  background:white;
+
+  border:1px solid var(--border);
+
+  border-radius:17px;
+
+  padding:20px;
+
+  box-shadow:var(--shadow);
+
+}
+
+.grid{
+
+  display:grid;
+
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+  gap:15px;
+
+}
+
+.stat{
+
+  font-size:28px;
+
+  font-weight:800;
 
   color:var(--green);
 
 }
 
-main {
+.muted{color:var(--muted);font-size:14px}
 
-  max-width:1050px;
-
-  margin:auto;
-
-  padding:28px 18px;
-
-}
-
-.page { display:none; }
-
-.page.active { display:block; }
-
-.hero {
-
-  background:linear-gradient(135deg,#e1f1e4,#f4f8ed);
-
-  border-radius:22px;
-
-  padding:42px 22px;
-
-  text-align:center;
-
-}
-
-.hero-icon { font-size:48px; }
-
-.hero h1 {
-
-  color:var(--dark);
-
-  font-size:clamp(30px,5vw,46px);
-
-  margin:12px 0;
-
-}
-
-.hero p {
-
-  color:var(--muted);
-
-  line-height:1.6;
-
-}
-
-.search {
-
-  display:flex;
-
-  gap:10px;
-
-  max-width:650px;
-
-  margin:25px auto 0;
-
-}
-
-input,textarea,select {
+input,select,textarea{
 
   width:100%;
 
   padding:13px;
 
-  border:1px solid #dce7dd;
+  border:1px solid var(--border);
 
-  border-radius:10px;
+  border-radius:11px;
 
-  font-size:15px;
+  font:inherit;
 
   background:white;
 
   color:var(--text);
 
+  margin:7px 0 13px;
+
 }
 
-textarea { resize:vertical; }
+textarea{min-height:110px;resize:vertical}
 
-button { font-family:inherit; }
-
-.primary {
+button.primary,.primary{
 
   background:var(--green);
 
@@ -212,347 +262,191 @@ button { font-family:inherit; }
 
   border:0;
 
-  padding:13px 20px;
+  border-radius:11px;
 
-  border-radius:10px;
+  padding:12px 18px;
+
+  font-weight:700;
 
   cursor:pointer;
 
-  font-weight:bold;
-
 }
 
-.primary:hover { background:var(--dark); }
+button.primary:hover{background:var(--dark)}
 
-.secondary {
+button.secondary{
 
   background:var(--light);
 
-  color:var(--green);
-
-  border:0;
-
-  padding:10px 14px;
-
-  border-radius:9px;
-
-  cursor:pointer;
-
-  font-weight:bold;
-
-}
-
-.small-button {
-
-  border:0;
-
-  background:transparent;
-
-  color:var(--green);
-
-  cursor:pointer;
-
-  padding:7px;
-
-}
-
-.section { margin-top:35px; }
-
-.section h2,
-
-.page-title { color:var(--dark); }
-
-.section-intro {
-
-  color:var(--muted);
-
-  line-height:1.6;
-
-}
-
-.cards {
-
-  display:grid;
-
-  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
-
-  gap:15px;
-
-}
-
-.card {
-
-  background:white;
-
-  border:1px solid var(--border);
-
-  border-radius:15px;
-
-  padding:19px;
-
-}
-
-.card h3 {
-
   color:var(--dark);
 
-  margin-top:5px;
-
-}
-
-.card p {
-
-  color:var(--muted);
-
-  line-height:1.6;
-
-  font-size:14px;
-
-}
-
-.feature-icon { font-size:28px; }
-
-.result {
-
-  margin-top:18px;
-
-  padding:20px;
-
-  background:white;
-
   border:1px solid var(--border);
 
-  border-radius:15px;
-
-  line-height:1.6;
-
-}
-
-.result h3 { color:var(--dark); }
-
-.tag {
-
-  display:inline-block;
-
-  padding:6px 12px;
-
-  border-radius:20px;
-
-  font-size:12px;
-
-  font-weight:bold;
-
-  margin-bottom:5px;
-
-}
-
-.safe { background:#e5f5e8; color:#246b40; }
-
-.warning { background:var(--yellow); color:#986000; }
-
-.danger { background:var(--red); color:#a32e2e; }
-
-.neutral { background:#edf0f0; color:#52615a; }
-
-.notice {
-
-  background:#fff8e8;
-
-  border:1px solid #f1e2bd;
-
-  border-radius:12px;
-
-  padding:14px;
-
-  color:#705a27;
-
-  font-size:13px;
-
-  line-height:1.6;
-
-  margin-top:18px;
-
-}
-
-.result-actions {
-
-  display:flex;
-
-  flex-wrap:wrap;
-
-  gap:8px;
-
-  margin-top:12px;
-
-}
-
-.category-list {
-
-  display:flex;
-
-  flex-wrap:wrap;
-
-  gap:8px;
-
-  margin:18px 0;
-
-}
-
-.category-button {
-
-  border:1px solid var(--border);
-
-  background:white;
-
-  border-radius:20px;
+  border-radius:10px;
 
   padding:9px 13px;
 
   cursor:pointer;
 
-  color:var(--text);
-
 }
 
-.category-button.active {
+button.danger{
 
-  background:var(--light);
+  background:#fff0f0;
 
-  border-color:var(--green);
+  color:var(--red);
 
-  color:var(--green);
+  border:0;
 
-}
+  border-radius:9px;
 
-.food-list {
-
-  display:grid;
-
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-
-  gap:12px;
-
-}
-
-.food-item {
-
-  background:white;
-
-  border:1px solid var(--border);
-
-  padding:15px;
-
-  border-radius:12px;
+  padding:8px 12px;
 
   cursor:pointer;
 
 }
 
-.food-item:hover {
-
-  border-color:var(--green);
-
-}
-
-.food-item strong { color:var(--dark); }
-
-.food-item p {
-
-  color:var(--muted);
-
-  font-size:13px;
-
-  margin-bottom:0;
-
-}
-
-.form-group { margin-bottom:15px; }
-
-.form-group label {
-
-  display:block;
-
-  margin-bottom:7px;
-
-  font-weight:bold;
-
-  font-size:14px;
-
-}
-
-.diary-entry {
+.food-card{
 
   background:white;
 
   border:1px solid var(--border);
 
+  border-radius:15px;
+
+  padding:16px;
+
+}
+
+.food-card h3{margin-bottom:7px}
+
+.tag{
+
+  display:inline-block;
+
+  font-size:12px;
+
+  padding:5px 9px;
+
+  border-radius:20px;
+
+  font-weight:700;
+
+  margin:4px 3px 4px 0;
+
+}
+
+.safe{background:#e1f4e5;color:#26713d}
+
+.caution{background:#fff2d6;color:#94630c}
+
+.avoid{background:#ffe3e3;color:#b33434}
+
+.result{
+
+  background:#f2f8f2;
+
+  border:1px solid var(--border);
+
+  padding:16px;
+
   border-radius:12px;
 
-  padding:15px;
+  margin-top:15px;
 
-  margin-top:12px;
-
-}
-
-.diary-entry p {
-
-  color:var(--muted);
-
-  line-height:1.5;
-
-}
-
-.empty {
-
-  padding:25px;
-
-  text-align:center;
-
-  color:var(--muted);
-
-  background:white;
-
-  border-radius:12px;
-
-  border:1px dashed var(--border);
-
-}
-
-footer {
-
-  text-align:center;
-
-  padding:30px 15px;
-
-  color:var(--muted);
-
-  font-size:13px;
+  white-space:pre-wrap;
 
   line-height:1.7;
 
 }
 
-.hidden { display:none !important; }
+.result:empty{display:none}
 
-@media(max-width:650px) {
+.section-title{margin:30px 0 15px}
 
-  header {
+.food-actions{
 
-    flex-direction:column;
+  display:flex;
 
-    align-items:center;
+  gap:7px;
 
-  }
+  flex-wrap:wrap;
 
-  nav { justify-content:center; }
+  margin-top:12px;
 
-  nav button { padding:9px; font-size:13px; }
+}
 
-  .search { flex-direction:column; }
+.food-actions button{font-size:12px}
 
-  .hero { padding:30px 16px; }
+.ai-panel{
 
-  main { padding:20px 13px; }
+  background:linear-gradient(135deg,#e9f5eb,#f8fbf8);
+
+  border:1px solid var(--border);
+
+  border-radius:18px;
+
+  padding:20px;
+
+}
+
+.ai-result{
+
+  background:white;
+
+  border:1px solid var(--border);
+
+  padding:18px;
+
+  border-radius:13px;
+
+  margin-top:15px;
+
+  white-space:pre-wrap;
+
+  line-height:1.7;
+
+  overflow-wrap:anywhere;
+
+}
+
+.ai-result:empty{display:none}
+
+.ai-result img{
+
+  max-width:100%;
+
+  border-radius:10px;
+
+}
+
+.hidden{display:none!important}
+
+footer{
+
+  text-align:center;
+
+  color:var(--muted);
+
+  padding:30px 15px;
+
+  font-size:13px;
+
+}
+
+hr{border:0;border-top:1px solid var(--border);margin:20px 0}
+
+@media(max-width:600px){
+
+  .header-inner{padding:13px 15px}
+
+  .logo{font-size:21px}
+
+  main{margin:18px auto}
+
+  .hero{padding:25px 19px}
+
+  .card{padding:16px}
 
 }
 
@@ -564,7 +458,13 @@ footer {
 
 <header>
 
-  <div class="logo">Lacto<span>Check</span> 🌿</div>
+  <div class="header-inner">
+
+    <div class="logo">🥛 Lacto<span>Check</span></div>
+
+    <span class="muted">Eat with Confidence</span>
+
+  </div>
 
   <nav>
 
@@ -580,6 +480,8 @@ footer {
 
     <button data-page="diary" onclick="showPage('diary',this)">Food Diary</button>
 
+    <button data-page="ai" onclick="showPage('ai',this)">✨ LactoCheck AI</button>
+
   </nav>
 
 </header>
@@ -592,99 +494,81 @@ footer {
 
   <div class="hero">
 
-    <div class="hero-icon">🥛🌿</div>
-
     <h1>Eat with Confidence.</h1>
 
-    <p>Explore foods, check ingredients, and make informed choices.</p>
+    <p>
 
-    <div class="search">
+      Discover foods, check ingredients, and make more informed food choices.
 
-      <input id="foodSearch" list="foodSuggestions"
+      LactoCheck helps you understand lactose-related ingredients in everyday
 
-        placeholder="Search a food... e.g. rice, adobo, milk">
+      Filipino meals and products.
 
-      <datalist id="foodSuggestions"></datalist>
+    </p>
 
-      <button class="primary" onclick="checkFood()">Check Food</button>
+    <button class="primary" onclick="showPage('foods')">Explore Foods</button>
+
+    <button class="secondary" onclick="showPage('ai')">Try LactoCheck AI ✨</button>
+
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+
+      <div class="stat" id="foodCount">0</div>
+
+      <p class="muted">Foods in our database</p>
+
+    </div>
+
+    <div class="card">
+
+      <div class="stat" id="favoriteCount">0</div>
+
+      <p class="muted">Your favorites</p>
+
+    </div>
+
+    <div class="card">
+
+      <div class="stat" id="diaryCount">0</div>
+
+      <p class="muted">Food diary entries</p>
 
     </div>
 
   </div>
 
-  <div id="homeResult"></div>
+  <h2 class="section-title">Recently checked foods</h2>
 
-  <div class="section">
+  <div id="recentList" class="grid"></div>
 
-    <h2>Explore LactoCheck</h2>
+  <h2 class="section-title">Your favorites</h2>
 
-    <div class="cards">
+  <div id="homeFavorites" class="grid"></div>
 
-      <div class="card">
+  <div class="card" style="margin-top:20px">
 
-        <div class="feature-icon">🔎</div>
+    <h3>What is lactose intolerance?</h3>
 
-        <h3>Food Database</h3>
+    <p>
 
-        <p>Explore everyday foods and common Filipino dishes.</p>
+      Lactose intolerance is a condition in which the body has difficulty
 
-        <button class="secondary" onclick="showPage('foods')">Explore foods</button>
+      digesting lactose, a natural sugar found in milk and dairy products.
 
-      </div>
+      It can cause symptoms such as bloating, gas, stomach pain, and diarrhea.
 
-      <div class="card">
+    </p>
 
-        <div class="feature-icon">🧾</div>
+    <p class="muted">
 
-        <h3>Ingredient Checker</h3>
+      LactoCheck is an educational tool and does not replace professional
 
-        <p>Paste a product's ingredient list to identify possible lactose sources.</p>
+      medical advice.
 
-        <button class="secondary" onclick="showPage('analyzer')">Check ingredients</button>
-
-      </div>
-
-      <div class="card">
-
-        <div class="feature-icon">🥥</div>
-
-        <h3>Dairy Alternatives</h3>
-
-        <p>Discover alternatives to common dairy products.</p>
-
-        <button class="secondary" onclick="showPage('alternatives')">Explore alternatives</button>
-
-      </div>
-
-      <div class="card">
-
-        <div class="feature-icon">📝</div>
-
-        <h3>Food Diary</h3>
-
-        <p>Keep track of meals and personal observations.</p>
-
-        <button class="secondary" onclick="showPage('diary')">Open diary</button>
-
-      </div>
-
-    </div>
-
-  </div>
-
-  <div class="section">
-
-    <h2>Recently Checked</h2>
-
-    <div id="recentFoods" class="food-list"></div>
-
-  </div>
-
-  <div class="section">
-
-    <h2>Your Favorites ⭐</h2>
-
-    <div id="favoriteFoods" class="food-list"></div>
+    </p>
 
   </div>
 
@@ -694,51 +578,31 @@ footer {
 
 <section id="foods" class="page">
 
-  <h2 class="page-title">Food Database 🍽️</h2>
+  <h2>Food Database</h2>
 
-  <p class="section-intro">
+  <p class="muted">Explore common foods and their possible lactose content.</p>
 
-    Browse common foods and learn whether their usual plain preparation
+  <input id="foodSearch" placeholder="Search for a food..." oninput="renderFoodDatabase()">
 
-    contains lactose. Recipes and packaged products can differ.
+  <select id="foodCategory" onchange="renderFoodDatabase()">
 
-  </p>
+    <option value="all">All categories</option>
 
-  <input id="databaseSearch" placeholder="Search the food database..."
+    <option value="Filipino Meals">Filipino Meals</option>
 
-    oninput="renderFoodDatabase()">
+    <option value="Rice and Staples">Rice and Staples</option>
 
-  <div class="category-list" id="categories">
+    <option value="Dairy">Dairy</option>
 
-    <button class="category-button active" onclick="filterCategory('All',this)">All</button>
+    <option value="Snacks and Desserts">Snacks and Desserts</option>
 
-    <button class="category-button" onclick="filterCategory('Staples',this)">Staples</button>
+    <option value="Drinks">Drinks</option>
 
-    <button class="category-button" onclick="filterCategory('Meat & Seafood',this)">Meat & Seafood</button>
+    <option value="Fruits and Vegetables">Fruits and Vegetables</option>
 
-    <button class="category-button" onclick="filterCategory('Fruits',this)">Fruits</button>
+  </select>
 
-    <button class="category-button" onclick="filterCategory('Vegetables',this)">Vegetables</button>
-
-    <button class="category-button" onclick="filterCategory('Filipino Dishes',this)">Filipino Dishes</button>
-
-    <button class="category-button" onclick="filterCategory('Dairy',this)">Dairy</button>
-
-    <button class="category-button" onclick="filterCategory('Snacks & Desserts',this)">Snacks & Desserts</button>
-
-    <button class="category-button" onclick="filterCategory('Drinks',this)">Drinks</button>
-
-  </div>
-
-  <div id="databaseResults" class="food-list"></div>
-
-  <div class="notice">
-
-    Food database entries are general guidance, not verified product
-
-    information. Always check the actual recipe or package label.
-
-  </div>
+  <div id="foodList" class="grid"></div>
 
 </section>
 
@@ -746,51 +610,33 @@ footer {
 
 <section id="analyzer" class="page">
 
-  <h2 class="page-title">Ingredient Checker 🧾</h2>
+  <h2>Ingredient Checker</h2>
 
-  <p class="section-intro">
-
-    Copy the ingredient list from a food package and paste it below.
-
-    LactoCheck will look for ingredients that may indicate lactose.
-
-  </p>
+  <p>Enter a product's ingredient list to check for possible lactose sources.</p>
 
   <div class="card">
 
-    <div class="form-group">
+    <label for="ingredientsInput"><strong>Ingredient list</strong></label>
 
-      <label for="productName">Product name (optional)</label>
+    <textarea id="ingredientsInput" placeholder="Example: Milk powder, sugar, cocoa powder, vegetable oil..."></textarea>
 
-      <input id="productName" placeholder="Example: Chocolate biscuits">
+    <button class="primary" onclick="analyzeIngredients()">Check Ingredients</button>
 
-    </div>
-
-    <div class="form-group">
-
-      <label for="ingredientInput">Ingredient list</label>
-
-      <textarea id="ingredientInput" rows="6"
-
-        placeholder="Example: Wheat flour, sugar, milk powder, vegetable oil, salt..."></textarea>
-
-    </div>
-
-    <button class="primary" onclick="analyzeIngredients()">Analyze Ingredients</button>
-
-    <div id="analysisResult"></div>
+    <div id="ingredientResult" class="result"></div>
 
   </div>
 
-  <div class="notice">
+  <h3 class="section-title">Common ingredients to watch for</h3>
 
-    This checker looks for ingredient names in the text you provide.
+  <div class="grid">
 
-    It cannot verify the manufacturer's complete formula, contamination,
+    <div class="food-card"><strong>Milk powder</strong><p class="muted">Contains milk solids and usually lactose.</p></div>
 
-    or the amount of lactose. A result with no detected terms is not
+    <div class="food-card"><strong>Whey</strong><p class="muted">A milk-derived ingredient that may contain lactose.</p></div>
 
-    proof that a product is lactose-free.
+    <div class="food-card"><strong>Casein</strong><p class="muted">A milk protein. Its presence does not alone tell you the lactose amount.</p></div>
+
+    <div class="food-card"><strong>Lactose</strong><p class="muted">The natural sugar found in milk.</p></div>
 
   </div>
 
@@ -800,57 +646,57 @@ footer {
 
 <section id="alternatives" class="page">
 
-  <h2 class="page-title">Dairy-Free Alternatives 🌱</h2>
+  <h2>Food Alternatives</h2>
 
-  <p class="section-intro">Some options to explore when replacing dairy products.</p>
+  <p class="muted">Some alternatives to common dairy products.</p>
 
-  <div class="cards">
+  <div class="grid">
 
-    <div class="card">
+    <div class="food-card">
 
-      <h3>🥛 Soy Milk</h3>
+      <h3>🥛 Regular Milk</h3>
 
-      <p>A plant-based alternative to cow's milk. Check labels for added dairy ingredients.</p>
-
-    </div>
-
-    <div class="card">
-
-      <h3>🌾 Oat Milk</h3>
-
-      <p>A plant-based option for cereal, coffee, and cooking.</p>
+      <p>Try lactose-free milk or unsweetened soy milk.</p>
 
     </div>
 
-    <div class="card">
+    <div class="food-card">
 
-      <h3>🥥 Coconut Milk</h3>
+      <h3>🧀 Regular Cheese</h3>
 
-      <p>Commonly used in Filipino cooking. Check packaged products for added ingredients.</p>
-
-    </div>
-
-    <div class="card">
-
-      <h3>🌰 Almond Milk</h3>
-
-      <p>A nut-based milk alternative. Avoid if you have an almond allergy.</p>
+      <p>Consider products labeled lactose-free. Some aged cheeses naturally contain less lactose, but amounts vary.</p>
 
     </div>
 
-    <div class="card">
+    <div class="food-card">
 
-      <h3>🧀 Lactose-Free Dairy</h3>
+      <h3>🍦 Milk Ice Cream</h3>
 
-      <p>Some dairy products have their lactose broken down. They still contain milk proteins and are not suitable for everyone with a milk allergy.</p>
+      <p>Try a dairy-free frozen dessert made with coconut or another plant-based ingredient.</p>
 
     </div>
 
-    <div class="card">
+    <div class="food-card">
 
-      <h3>🍦 Sorbet</h3>
+      <h3>🥣 Cream</h3>
 
-      <p>Some fruit-based sorbets are dairy-free. Always check the ingredient label.</p>
+      <p>Try a suitable plant-based cooking cream, checking its label for milk ingredients.</p>
+
+    </div>
+
+    <div class="food-card">
+
+      <h3>🍫 Milk Chocolate</h3>
+
+      <p>Look for dairy-free dark chocolate and always check the ingredients.</p>
+
+    </div>
+
+    <div class="food-card">
+
+      <h3>☕ Coffee Creamer</h3>
+
+      <p>Try a plant-based creamer, but check for milk-derived additives.</p>
 
     </div>
 
@@ -862,81 +708,89 @@ footer {
 
 <section id="guide" class="page">
 
-  <h2 class="page-title">Ingredient Guide 📖</h2>
+  <h2>Ingredient Guide</h2>
 
-  <p class="section-intro">Learn which ingredients deserve attention when checking food labels.</p>
+  <p>Learn about common ingredients found on food labels.</p>
 
-  <div class="cards">
+  <div class="grid">
 
-    <div class="card">
+    <div class="food-card">
 
       <h3>Lactose</h3>
 
-      <p>Milk sugar. Its presence means the product contains lactose.</p>
+      <span class="tag avoid">Contains lactose</span>
+
+      <p>A naturally occurring sugar found in milk and dairy products.</p>
 
     </div>
 
-    <div class="card">
+    <div class="food-card">
 
-      <h3>Milk Powder</h3>
+      <h3>Whey</h3>
 
-      <p>Usually contains lactose. Check the specific product label.</p>
+      <span class="tag caution">May contain lactose</span>
 
-    </div>
-
-    <div class="card">
-
-      <h3>Whey Powder</h3>
-
-      <p>Often contains lactose. The amount varies by product.</p>
+      <p>A milk-derived ingredient. Whey powder and whey concentrate can contain lactose.</p>
 
     </div>
 
-    <div class="card">
+    <div class="food-card">
 
-      <h3>Milk Solids</h3>
+      <h3>Milk solids</h3>
 
-      <p>Milk-derived ingredients that may contain lactose.</p>
+      <span class="tag avoid">Contains milk components</span>
 
-    </div>
-
-    <div class="card">
-
-      <h3>Condensed Milk</h3>
-
-      <p>Traditional condensed milk contains lactose.</p>
+      <p>Components of milk that may include lactose.</p>
 
     </div>
 
-    <div class="card">
+    <div class="food-card">
 
-      <h3>Evaporated Milk</h3>
+      <h3>Casein</h3>
 
-      <p>Ordinary evaporated milk contains lactose.</p>
+      <span class="tag caution">Milk-derived</span>
 
-    </div>
-
-    <div class="card">
-
-      <h3>Casein / Caseinate</h3>
-
-      <p>Milk proteins. They do not necessarily indicate lactose, but are important for people with milk allergy.</p>
+      <p>A milk protein. Casein itself is not lactose, but it indicates a milk-derived ingredient.</p>
 
     </div>
 
-    <div class="card">
+    <div class="food-card">
 
-      <h3>Milk Fat / Butter</h3>
+      <h3>Lactic acid</h3>
 
-      <p>Butter generally contains very little lactose, but dairy ingredients and amounts vary.</p>
+      <span class="tag safe">Not automatically lactose</span>
+
+      <p>Despite its name, lactic acid is not the same as lactose.</p>
 
     </div>
 
-    <div class="card">
+    <div class="food-card">
 
-      <h3>Lactic Acid</h3>
+      <h3>Calcium lactate</h3>
 
-      <p>The name alone does not mean an ingredient contains lactose. Its source varies.</p>
+      <span class="tag safe">Not automatically lactose</span>
+
+      <p>A calcium salt that is not the same thing as milk sugar.</p>
+
+    </div>
+
+    <div class="food-card">
+
+      <h3>Milk protein</h3>
+
+      <span class="tag caution">Milk-derived</span>
+
+      <p>Indicates milk protein. Check the full label and allergen statement.</p>
+
+    </div>
+
+    <div class="food-card">
+
+      <h3>Non-dairy creamer</h3>
+
+      <span class="tag caution">Check the label</span>
+
+      <p>Some products may still contain milk-derived ingredients such as caseinate.</p>
 
     </div>
 
@@ -948,39 +802,133 @@ footer {
 
 <section id="diary" class="page">
 
-  <h2 class="page-title">My Food Diary 📝</h2>
+  <h2>Food Diary</h2>
 
-  <p class="section-intro">Record meals and personal observations. This can help you notice patterns over time.</p>
+  <p>Record what you eat and any symptoms you experience.</p>
 
   <div class="card">
 
-    <div class="form-group">
+    <label><strong>Food or drink</strong></label>
 
-      <label for="meal">Food eaten</label>
+    <input id="diaryFood" placeholder="What did you eat?">
 
-      <input id="meal" placeholder="What did you eat?">
+    <label><strong>Symptoms</strong></label>
 
-    </div>
+    <select id="diarySymptom">
 
-    <div class="form-group">
+      <option value="None">No symptoms</option>
 
-      <label for="symptoms">Symptoms or observations</label>
+      <option value="Bloating">Bloating</option>
 
-      <textarea id="symptoms" rows="3"
+      <option value="Gas">Gas</option>
 
-        placeholder="Describe how you felt..."></textarea>
+      <option value="Stomach pain">Stomach pain</option>
 
-    </div>
+      <option value="Diarrhea">Diarrhea</option>
 
-    <button class="primary" onclick="saveMeal()">Save Entry</button>
+      <option value="Nausea">Nausea</option>
+
+      <option value="Other">Other</option>
+
+    </select>
+
+    <label><strong>Notes</strong></label>
+
+    <textarea id="diaryNotes" placeholder="Optional notes..."></textarea>
+
+    <button class="primary" onclick="addDiaryEntry()">Save Entry</button>
 
   </div>
 
-  <div class="section">
+  <h3 class="section-title">Your entries</h3>
 
-    <h3>Previous Entries</h3>
+  <div id="diaryEntries"></div>
 
-    <div id="entries"></div>
+</section>
+
+<!-- AI PAGE -->
+
+<section id="ai" class="page">
+
+  <div class="hero">
+
+    <h1>✨ LactoCheck AI</h1>
+
+    <p>
+
+      Ask questions, analyze ingredients, identify foods from photos,
+
+      and get food suggestions based on your preferences.
+
+    </p>
+
+  </div>
+
+  <div class="ai-panel">
+
+    <label for="aiMode"><strong>Choose an AI tool</strong></label>
+
+    <select id="aiMode" onchange="updateAIMode()">
+
+      <option value="chat">💬 AI Chatbot</option>
+
+      <option value="food">📷 Food Photo Recognition</option>
+
+      <option value="ingredients">🔎 AI Ingredient Analyzer</option>
+
+      <option value="personalized">🥗 Personalized Food Assistant</option>
+
+    </select>
+
+    <div id="aiDescription" class="muted">
+
+      Ask anything about lactose intolerance, food ingredients, and food choices.
+
+    </div>
+
+    <label for="aiMessage"><strong>Your message</strong></label>
+
+    <textarea id="aiMessage" placeholder="Ask LactoCheck AI something..."></textarea>
+
+    <div id="aiPhotoArea" class="hidden">
+
+      <label for="aiImage"><strong>Upload a food photo</strong></label>
+
+      <input id="aiImage" type="file" accept="image/jpeg,image/png,image/webp" capture="environment">
+
+      <p class="muted">Use a clear photo. Images must be under 5 MB.</p>
+
+    </div>
+
+    <div id="aiPreferencesArea" class="hidden">
+
+      <label for="aiPreferences"><strong>Your food preferences</strong></label>
+
+      <textarea id="aiPreferences" placeholder="Example: I avoid dairy, prefer Filipino meals, and want affordable options."></textarea>
+
+    </div>
+
+    <button id="aiButton" class="primary" onclick="askAI()">Ask LactoCheck AI ✨</button>
+
+    <div id="aiResult" class="ai-result" aria-live="polite"></div>
+
+  </div>
+
+  <div class="card" style="margin-top:18px">
+
+    <h3>Important reminder</h3>
+
+    <p class="muted">
+
+      AI results are estimates, not medical diagnoses or guaranteed ingredient
+
+      identification. Always check product packaging and consult a healthcare
+
+      professional for medical concerns. Do not submit private or sensitive
+
+      medical information.
+
+    </p>
 
   </div>
 
@@ -990,21 +938,9 @@ footer {
 
 <footer>
 
-  <strong>LactoCheck 🌿</strong>
+  <strong>LactoCheck</strong> · Eat with Confidence<br>
 
-  <p>Helping people make informed food choices.</p>
-
-  <p>
-
-    LactoCheck provides general educational information, not medical advice.
-
-    Food recipes and product ingredients vary. Always read product labels.
-
-    Lactose intolerance is different from milk allergy.
-
-  </p>
-
-  <p>© 2026 LactoCheck</p>
+  Educational information only. Always verify food labels.
 
 </footer>
 
@@ -1014,1627 +950,467 @@ footer {
 
 const foods = [
 
-  {
+  {name:"Adobo",category:"Filipino Meals",status:"Usually lactose-free",level:"safe",details:"Traditional adobo uses meat, vinegar, soy sauce, garlic, and spices. Check added sauces and marinades."},
 
-    name:"White Rice",category:"Staples",
+  {name:"Sinigang",category:"Filipino Meals",status:"Usually lactose-free",level:"safe",details:"Traditional sinigang is made with meat or seafood, vegetables, and souring ingredients."},
 
-    aliases:["rice","cooked rice","plain rice"],
+  {name:"Tinola",category:"Filipino Meals",status:"Usually lactose-free",level:"safe",details:"Usually made with chicken, ginger, papaya, and leafy vegetables."},
 
-    status:"safe",
+  {name:"Paksiw",category:"Filipino Meals",status:"Usually lactose-free",level:"safe",details:"Traditional paksiw uses vinegar and seasonings."},
 
-    title:"Naturally Lactose-Free",
+  {name:"Kare-kare",category:"Filipino Meals",status:"Check ingredients",level:"caution",details:"Traditional versions are often dairy-free, but some recipes or packaged sauces may contain milk."},
 
-    info:"Plain cooked white rice contains no lactose. Check added sauces, toppings, and seasonings."
+  {name:"Bicol Express",category:"Filipino Meals",status:"Usually lactose-free",level:"safe",details:"Traditional versions use coconut milk, not dairy milk. Check the recipe."},
 
-  },
+  {name:"Chicken Curry",category:"Filipino Meals",status:"Check ingredients",level:"caution",details:"Some recipes use coconut milk while others add dairy cream or milk."},
 
-  {
+  {name:"Menudo",category:"Filipino Meals",status:"Usually lactose-free",level:"safe",details:"Traditional menudo is generally made with meat, tomato sauce, and vegetables."},
 
-    name:"Brown Rice",category:"Staples",
+  {name:"Caldereta",category:"Filipino Meals",status:"Check ingredients",level:"caution",details:"Some recipes include cheese or other dairy ingredients."},
 
-    aliases:["brown rice"],
+  {name:"Lechon Kawali",category:"Filipino Meals",status:"Usually lactose-free",level:"safe",details:"Usually pork belly and seasonings. Check sauces and marinades."},
 
-    status:"safe",
+  {name:"Pancit Bihon",category:"Filipino Meals",status:"Usually lactose-free",level:"safe",details:"Typically rice noodles, vegetables, meat, and seasonings."},
 
-    title:"Naturally Lactose-Free",
+  {name:"Pancit Canton",category:"Filipino Meals",status:"Check ingredients",level:"caution",details:"Packaged noodles and seasonings can vary. Read the ingredient label."},
 
-    info:"Plain brown rice contains no lactose."
+  {name:"Lumpiang Shanghai",category:"Filipino Meals",status:"Usually lactose-free",level:"safe",details:"Traditional versions are generally made with meat, vegetables, and wrappers."},
 
-  },
+  {name:"Lumpiang Sariwa",category:"Filipino Meals",status:"Check ingredients",level:"caution",details:"The sauce or wrapper recipe may contain milk or other dairy ingredients."},
 
-  {
+  {name:"Sisig",category:"Filipino Meals",status:"Check ingredients",level:"caution",details:"Some versions add mayonnaise, butter, or cheese."},
 
-    name:"Fried Rice",category:"Staples",
+  {name:"Bulalo",category:"Filipino Meals",status:"Usually lactose-free",level:"safe",details:"Traditional bulalo is a beef soup with vegetables."},
 
-    aliases:["sinangag","garlic rice"],
+  {name:"Laing",category:"Filipino Meals",status:"Usually lactose-free",level:"safe",details:"Traditional laing uses taro leaves and coconut milk."},
 
-    status:"warning",
+  {name:"Pinakbet",category:"Filipino Meals",status:"Usually lactose-free",level:"safe",details:"Vegetables cooked with bagoong and seasonings."},
 
-    title:"Depends on Preparation",
+  {name:"Dinuguan",category:"Filipino Meals",status:"Usually lactose-free",level:"safe",details:"Traditional dinuguan uses pork, vinegar, and blood."},
 
-    info:"Plain fried rice may be lactose-free, but butter, cheese, and creamy additions can add dairy."
+  {name:"Tocino",category:"Filipino Meals",status:"Check ingredients",level:"caution",details:"Commercial marinades may contain milk-derived additives. Check the package."},
 
-  },
+  {name:"Longganisa",category:"Filipino Meals",status:"Check ingredients",level:"caution",details:"Recipes differ, especially commercial products."},
 
-  {
+  {name:"Hotdog",category:"Filipino Meals",status:"Check ingredients",level:"caution",details:"Some processed meat products contain milk powder or milk proteins."},
 
-    name:"Oatmeal",category:"Staples",
+  {name:"Fried Chicken",category:"Filipino Meals",status:"Check ingredients",level:"caution",details:"Some coatings and marinades contain milk or buttermilk."},
 
-    aliases:["oats","rolled oats"],
+  {name:"Rice",category:"Rice and Staples",status:"Usually lactose-free",level:"safe",details:"Plain cooked rice does not naturally contain lactose."},
 
-    status:"warning",
+  {name:"Garlic Rice",category:"Rice and Staples",status:"Usually lactose-free",level:"safe",details:"Usually rice, garlic, and oil. Check if butter is used."},
 
-    title:"Check What You Add",
+  {name:"Fried Rice",category:"Rice and Staples",status:"Check ingredients",level:"caution",details:"Usually dairy-free, but some recipes use butter."},
 
-    info:"Plain oats contain no lactose. Milk added during preparation can introduce lactose."
+  {name:"Corn",category:"Rice and Staples",status:"Usually lactose-free",level:"safe",details:"Plain corn naturally contains no lactose."},
 
-  },
+  {name:"Bread",category:"Snacks and Desserts",status:"Check ingredients",level:"caution",details:"Some bread contains milk, butter, whey, or milk powder."},
 
-  {
+  {name:"Pandesal",category:"Snacks and Desserts",status:"Check ingredients",level:"caution",details:"Recipes vary. Some use milk or butter."},
 
-    name:"Bread",category:"Staples",
+  {name:"Ensaymada",category:"Snacks and Desserts",status:"Contains dairy in many recipes",level:"avoid",details:"Often made with butter, milk, and cheese."},
 
-    aliases:["white bread","loaf bread","pandesal"],
+  {name:"Halo-halo",category:"Snacks and Desserts",status:"Often contains dairy",level:"avoid",details:"Commonly topped with evaporated milk or ice cream."},
 
-    status:"warning",
+  {name:"Leche Flan",category:"Snacks and Desserts",status:"Contains dairy",level:"avoid",details:"Usually made with condensed milk and evaporated milk."},
 
-    title:"Check the Ingredients",
+  {name:"Ube Halaya",category:"Snacks and Desserts",status:"Often contains dairy",level:"avoid",details:"Many recipes use condensed milk, evaporated milk, or butter."},
 
-    info:"Some bread and pandesal recipes contain milk, butter, or milk powder. Recipes vary."
+  {name:"Maja Blanca",category:"Snacks and Desserts",status:"Check ingredients",level:"caution",details:"Often made with coconut milk, but some recipes add dairy milk."},
 
-  },
+  {name:"Bibingka",category:"Snacks and Desserts",status:"Check ingredients",level:"caution",details:"Some recipes use butter, cheese, or milk."},
 
-  {
+  {name:"Puto",category:"Snacks and Desserts",status:"Check ingredients",level:"caution",details:"Some recipes use milk or cheese."},
 
-    name:"Pasta",category:"Staples",
+  {name:"Turon",category:"Snacks and Desserts",status:"Usually lactose-free",level:"safe",details:"Traditional turon is banana and wrapper fried in oil."},
 
-    aliases:["spaghetti noodles","macaroni"],
+  {name:"Banana Cue",category:"Snacks and Desserts",status:"Usually lactose-free",level:"safe",details:"Banana coated with caramelized sugar."},
 
-    status:"safe",
+  {name:"Ice Cream",category:"Dairy",status:"Usually contains lactose",level:"avoid",details:"Regular ice cream is commonly made with milk or cream."},
 
-    title:"Usually Lactose-Free When Plain",
+  {name:"Fresh Milk",category:"Dairy",status:"Contains lactose",level:"avoid",details:"Regular cow's milk naturally contains lactose."},
 
-    info:"Plain dried pasta is generally made without dairy. Sauces and fillings may contain milk or cheese."
+  {name:"Condensed Milk",category:"Dairy",status:"Contains lactose",level:"avoid",details:"Made from concentrated milk and sugar."},
 
-  },
+  {name:"Evaporated Milk",category:"Dairy",status:"Contains lactose",level:"avoid",details:"Concentrated milk with water removed."},
 
-  {
+  {name:"Yogurt",category:"Dairy",status:"Contains varying amounts",level:"caution",details:"Some people tolerate yogurt better, but lactose levels vary."},
 
-    name:"Potato",category:"Staples",
+  {name:"Cheese",category:"Dairy",status:"Varies by type",level:"caution",details:"Some aged hard cheeses have less lactose than fresh cheeses."},
 
-    aliases:["potatoes","kamote potato"],
+  {name:"Butter",category:"Dairy",status:"Usually low in lactose",level:"caution",details:"Butter generally has very little lactose, but is not necessarily lactose-free."},
 
-    status:"safe",
+  {name:"Soy Milk",category:"Drinks",status:"Usually lactose-free",level:"safe",details:"Plant-based milk made from soybeans. Check for added milk ingredients."},
 
-    title:"Naturally Lactose-Free",
+  {name:"Almond Milk",category:"Drinks",status:"Usually lactose-free",level:"safe",details:"Plant-based milk. Check the product label."},
 
-    info:"Plain potatoes contain no lactose. Butter, cheese, and cream can add lactose."
+  {name:"Coconut Milk",category:"Drinks",status:"Usually lactose-free",level:"safe",details:"Plant-based milk made from coconut."},
 
-  },
+  {name:"Black Coffee",category:"Drinks",status:"Usually lactose-free",level:"safe",details:"Plain coffee without milk or creamer."},
 
-  {
+  {name:"Milk Tea",category:"Drinks",status:"Often contains lactose",level:"avoid",details:"Many versions use milk, creamer, or milk powder."},
 
-    name:"Corn",category:"Staples",
+  {name:"Fruit Juice",category:"Drinks",status:"Usually lactose-free",level:"safe",details:"Plain fruit juice does not naturally contain lactose."},
 
-    aliases:["mais","sweet corn"],
+  {name:"Banana",category:"Fruits and Vegetables",status:"Lactose-free",level:"safe",details:"Fresh bananas do not contain lactose."},
 
-    status:"safe",
+  {name:"Apple",category:"Fruits and Vegetables",status:"Lactose-free",level:"safe",details:"Fresh apples do not contain lactose."},
 
-    title:"Naturally Lactose-Free",
+  {name:"Mango",category:"Fruits and Vegetables",status:"Lactose-free",level:"safe",details:"Fresh mangoes do not contain lactose."},
 
-    info:"Plain corn contains no lactose. Check butter and creamy toppings."
+  {name:"Papaya",category:"Fruits and Vegetables",status:"Lactose-free",level:"safe",details:"Fresh papaya does not contain lactose."},
 
-  },
+  {name:"Carrots",category:"Fruits and Vegetables",status:"Lactose-free",level:"safe",details:"Fresh carrots do not contain lactose."},
 
-  {
-
-    name:"Chicken",category:"Meat & Seafood",
-
-    aliases:["plain chicken","chicken meat"],
-
-    status:"safe",
-
-    title:"Naturally Lactose-Free",
-
-    info:"Plain chicken contains no lactose. Marinades, breading, and sauces may contain dairy."
-
-  },
-
-  {
-
-    name:"Pork",category:"Meat & Seafood",
-
-    aliases:["plain pork"],
-
-    status:"safe",
-
-    title:"Naturally Lactose-Free",
-
-    info:"Plain pork contains no lactose. Check sauces and marinades."
-
-  },
-
-  {
-
-    name:"Beef",category:"Meat & Seafood",
-
-    aliases:["plain beef"],
-
-    status:"safe",
-
-    title:"Naturally Lactose-Free",
-
-    info:"Plain beef contains no lactose. Check added ingredients."
-
-  },
-
-  {
-
-    name:"Fish",category:"Meat & Seafood",
-
-    aliases:["plain fish"],
-
-    status:"safe",
-
-    title:"Naturally Lactose-Free",
-
-    info:"Plain fish contains no lactose. Check sauces and preparation."
-
-  },
-
-  {
-
-    name:"Shrimp",category:"Meat & Seafood",
-
-    aliases:["prawns","hipon"],
-
-    status:"safe",
-
-    title:"Naturally Lactose-Free",
-
-    info:"Plain shrimp contains no lactose. Check sauces and coatings."
-
-  },
-
-  {
-
-    name:"Egg",category:"Meat & Seafood",
-
-    aliases:["eggs","boiled egg","fried egg"],
-
-    status:"safe",
-
-    title:"Naturally Lactose-Free",
-
-    info:"Plain eggs contain no lactose. Butter, milk, or cheese added during cooking can change the result."
-
-  },
-
-  {
-
-    name:"Banana",category:"Fruits",
-
-    aliases:["saging"],
-
-    status:"safe",
-
-    title:"Naturally Lactose-Free",
-
-    info:"Fresh bananas contain no lactose."
-
-  },
-
-  {
-
-    name:"Apple",category:"Fruits",
-
-    aliases:["apples"],
-
-    status:"safe",
-
-    title:"Naturally Lactose-Free",
-
-    info:"Fresh apples contain no lactose."
-
-  },
-
-  {
-
-    name:"Mango",category:"Fruits",
-
-    aliases:["mangga","mangoes"],
-
-    status:"safe",
-
-    title:"Naturally Lactose-Free",
-
-    info:"Fresh mangoes contain no lactose."
-
-  },
-
-  {
-
-    name:"Papaya",category:"Fruits",
-
-    aliases:["papaya fruit"],
-
-    status:"safe",
-
-    title:"Naturally Lactose-Free",
-
-    info:"Fresh papaya contains no lactose."
-
-  },
-
-  {
-
-    name:"Watermelon",category:"Fruits",
-
-    aliases:["pakwan"],
-
-    status:"safe",
-
-    title:"Naturally Lactose-Free",
-
-    info:"Fresh watermelon contains no lactose."
-
-  },
-
-  {
-
-    name:"Pineapple",category:"Fruits",
-
-    aliases:["pinya"],
-
-    status:"safe",
-
-    title:"Naturally Lactose-Free",
-
-    info:"Fresh pineapple contains no lactose."
-
-  },
-
-  {
-
-    name:"Orange",category:"Fruits",
-
-    aliases:["oranges"],
-
-    status:"safe",
-
-    title:"Naturally Lactose-Free",
-
-    info:"Fresh oranges contain no lactose."
-
-  },
-
-  {
-
-    name:"Carrot",category:"Vegetables",
-
-    aliases:["carrots"],
-
-    status:"safe",
-
-    title:"Naturally Lactose-Free",
-
-    info:"Plain carrots contain no lactose."
-
-  },
-
-  {
-
-    name:"Broccoli",category:"Vegetables",
-
-    aliases:["broccoli florets"],
-
-    status:"safe",
-
-    title:"Naturally Lactose-Free",
-
-    info:"Plain broccoli contains no lactose."
-
-  },
-
-  {
-
-    name:"Cabbage",category:"Vegetables",
-
-    aliases:["repolyo"],
-
-    status:"safe",
-
-    title:"Naturally Lactose-Free",
-
-    info:"Plain cabbage contains no lactose."
-
-  },
-
-  {
-
-    name:"Spinach",category:"Vegetables",
-
-    aliases:["kangkong"],
-
-    status:"safe",
-
-    title:"Naturally Lactose-Free",
-
-    info:"Plain spinach and kangkong contain no lactose."
-
-  },
-
-  {
-
-    name:"Tomato",category:"Vegetables",
-
-    aliases:["kamatis","tomatoes"],
-
-    status:"safe",
-
-    title:"Naturally Lactose-Free",
-
-    info:"Fresh tomatoes contain no lactose."
-
-  },
-
-  {
-
-    name:"Adobo",category:"Filipino Dishes",
-
-    aliases:["chicken adobo","pork adobo"],
-
-    status:"warning",
-
-    title:"Depends on Recipe",
-
-    info:"Traditional adobo commonly contains no dairy, but recipes, marinades, and added ingredients can vary."
-
-  },
-
-  {
-
-    name:"Sinigang",category:"Filipino Dishes",
-
-    aliases:["sinigang na baboy","sinigang na hipon","sinigang na isda"],
-
-    status:"warning",
-
-    title:"Depends on Preparation",
-
-    info:"Traditional sinigang is generally dairy-free. Check seasoning mixes and added ingredients."
-
-  },
-
-  {
-
-    name:"Pancit",category:"Filipino Dishes",
-
-    aliases:["pancit bihon","pancit canton","pancit palabok"],
-
-    status:"warning",
-
-    title:"Check the Recipe",
-
-    info:"Many pancit dishes contain no dairy, but noodles, sauces, toppings, and recipes vary."
-
-  },
-
-  {
-
-    name:"Lumpia",category:"Filipino Dishes",
-
-    aliases:["lumpiang shanghai","fresh lumpia"],
-
-    status:"warning",
-
-    title:"Check the Ingredients",
-
-    info:"Some lumpia recipes are dairy-free, but wrappers, fillings, and sauces vary."
-
-  },
-
-  {
-
-    name:"Lugaw",category:"Filipino Dishes",
-
-    aliases:["arroz caldo","goto"],
-
-    status:"warning",
-
-    title:"Check the Toppings",
-
-    info:"Plain rice porridge contains no lactose, but toppings and added ingredients may contain dairy."
-
-  },
-
-  {
-
-    name:"Champorado",category:"Filipino Dishes",
-
-    aliases:["tsamporado"],
-
-    status:"warning",
-
-    title:"Check the Preparation",
-
-    info:"Some champorado recipes use evaporated or condensed milk."
-
-  },
-
-  {
-
-    name:"Halo-Halo",category:"Filipino Dishes",
-
-    aliases:["halo halo"],
-
-    status:"warning",
-
-    title:"Usually Contains Dairy",
-
-    info:"Halo-halo commonly includes milk or ice cream. Ingredients vary by serving."
-
-  },
-
-  {
-
-    name:"Leche Flan",category:"Filipino Dishes",
-
-    aliases:["lecheflan"],
-
-    status:"danger",
-
-    title:"Usually Contains Lactose",
-
-    info:"Traditional leche flan is made with milk, which contains lactose."
-
-  },
-
-  {
-
-    name:"Kare-Kare",category:"Filipino Dishes",
-
-    aliases:["kare kare"],
-
-    status:"warning",
-
-    title:"Check the Recipe",
-
-    info:"Traditional kare-kare is usually dairy-free, but recipes and added ingredients vary."
-
-  },
-
-  {
-
-    name:"Sisig",category:"Filipino Dishes",
-
-    aliases:["pork sisig","chicken sisig"],
-
-    status:"warning",
-
-    title:"Check the Toppings",
-
-    info:"Some sisig recipes add mayonnaise, butter, or cheese. Check the preparation."
-
-  },
-
-  {
-
-    name:"Tapsilog",category:"Filipino Dishes",
-
-    aliases:["tapa silog"],
-
-    status:"warning",
-
-    title:"Check the Components",
-
-    info:"Plain tapa, egg, and rice are generally lactose-free, but marinades and added sauces vary."
-
-  },
-
-  {
-
-    name:"Pandesal",category:"Filipino Dishes",
-
-    aliases:["pan de sal"],
-
-    status:"warning",
-
-    title:"Check the Recipe",
-
-    info:"Some pandesal recipes contain milk or butter. Check the bakery or product ingredients."
-
-  },
-
-  {
-
-    name:"Milk",category:"Dairy",
-
-    aliases:["cow milk","cow's milk","fresh milk","whole milk"],
-
-    status:"danger",
-
-    title:"Contains Lactose",
-
-    info:"Ordinary cow's milk naturally contains lactose."
-
-  },
-
-  {
-
-    name:"Cheese",category:"Dairy",
-
-    aliases:["cheddar cheese","mozzarella"],
-
-    status:"warning",
-
-    title:"Check the Type",
-
-    info:"Cheese contains varying amounts of lactose. Aged hard cheeses often contain very little, while fresh cheeses may contain more."
-
-  },
-
-  {
-
-    name:"Yogurt",category:"Dairy",
-
-    aliases:["plain yogurt","regular yogurt"],
-
-    status:"warning",
-
-    title:"May Contain Lactose",
-
-    info:"Regular yogurt contains varying amounts of lactose. Some people tolerate certain yogurts better than milk."
-
-  },
-
-  {
-
-    name:"Ice Cream",category:"Dairy",
-
-    aliases:["vanilla ice cream","chocolate ice cream"],
-
-    status:"danger",
-
-    title:"Usually Contains Lactose",
-
-    info:"Regular dairy ice cream commonly contains lactose."
-
-  },
-
-  {
-
-    name:"Butter",category:"Dairy",
-
-    aliases:["salted butter","unsalted butter"],
-
-    status:"warning",
-
-    title:"Usually Very Low in Lactose",
-
-    info:"Butter generally contains very little lactose, but amounts vary. Check the product label."
-
-  },
-
-  {
-
-    name:"Condensed Milk",category:"Dairy",
-
-    aliases:["sweetened condensed milk"],
-
-    status:"danger",
-
-    title:"Contains Lactose",
-
-    info:"Traditional condensed milk is made from dairy milk and contains lactose."
-
-  },
-
-  {
-
-    name:"Evaporated Milk",category:"Dairy",
-
-    aliases:["evap milk"],
-
-    status:"danger",
-
-    title:"Contains Lactose",
-
-    info:"Ordinary evaporated milk contains lactose."
-
-  },
-
-  {
-
-    name:"Milk Chocolate",category:"Snacks & Desserts",
-
-    aliases:["chocolate bar"],
-
-    status:"danger",
-
-    title:"Usually Contains Lactose",
-
-    info:"Milk chocolate commonly contains milk ingredients and lactose."
-
-  },
-
-  {
-
-    name:"Dark Chocolate",category:"Snacks & Desserts",
-
-    aliases:["dark chocolate bar"],
-
-    status:"warning",
-
-    title:"Check the Label",
-
-    info:"Some dark chocolate is dairy-free, but others contain milk or have cross-contact warnings."
-
-  },
-
-  {
-
-    name:"Cookies",category:"Snacks & Desserts",
-
-    aliases:["biscuits","chocolate chip cookies"],
-
-    status:"warning",
-
-    title:"Check the Ingredients",
-
-    info:"Some cookies contain milk, butter, whey, or milk powder."
-
-  },
-
-  {
-
-    name:"Pancakes",category:"Snacks & Desserts",
-
-    aliases:["hotcakes"],
-
-    status:"warning",
-
-    title:"Check the Ingredients",
-
-    info:"Many pancake recipes contain milk or butter."
-
-  },
-
-  {
-
-    name:"Cake",category:"Snacks & Desserts",
-
-    aliases:["birthday cake","chocolate cake"],
-
-    status:"warning",
-
-    title:"Check the Recipe",
-
-    info:"Many cakes contain milk, butter, cream, or other dairy ingredients."
-
-  },
-
-  {
-
-    name:"Donut",category:"Snacks & Desserts",
-
-    aliases:["doughnut","donuts"],
-
-    status:"warning",
-
-    title:"Check the Ingredients",
-
-    info:"Some donuts contain milk, butter, or milk powder."
-
-  },
-
-  {
-
-    name:"Sorbet",category:"Snacks & Desserts",
-
-    aliases:["fruit sorbet"],
-
-    status:"safe",
-
-    title:"Often Dairy-Free",
-
-    info:"Traditional fruit sorbet is generally made without dairy, but check the product label."
-
-  },
-
-  {
-
-    name:"Soy Milk",category:"Drinks",
-
-    aliases:["soya milk"],
-
-    status:"safe",
-
-    title:"Naturally Lactose-Free",
-
-    info:"Pure soy milk is plant-based and contains no lactose. Check for added dairy ingredients."
-
-  },
-
-  {
-
-    name:"Oat Milk",category:"Drinks",
-
-    aliases:["oat drink"],
-
-    status:"safe",
-
-    title:"Naturally Lactose-Free",
-
-    info:"Pure oat milk is plant-based. Check for added dairy ingredients."
-
-  },
-
-  {
-
-    name:"Almond Milk",category:"Drinks",
-
-    aliases:["almond drink"],
-
-    status:"safe",
-
-    title:"Naturally Lactose-Free",
-
-    info:"Pure almond milk is plant-based. Check for added dairy ingredients."
-
-  },
-
-  {
-
-    name:"Coconut Milk",category:"Drinks",
-
-    aliases:["coconut drink"],
-
-    status:"safe",
-
-    title:"Naturally Lactose-Free",
-
-    info:"Pure coconut milk contains no lactose. Check packaged products for added dairy."
-
-  },
-
-  {
-
-    name:"Water",category:"Drinks",
-
-    aliases:["drinking water"],
-
-    status:"safe",
-
-    title:"Lactose-Free",
-
-    info:"Plain drinking water contains no lactose."
-
-  },
-
-  {
-
-    name:"Black Coffee",category:"Drinks",
-
-    aliases:["coffee","americano"],
-
-    status:"safe",
-
-    title:"Lactose-Free When Plain",
-
-    info:"Plain black coffee contains no lactose. Milk and cream additions can introduce lactose."
-
-  },
-
-  {
-
-    name:"Tea",category:"Drinks",
-
-    aliases:["plain tea"],
-
-    status:"safe",
-
-    title:"Lactose-Free When Plain",
-
-    info:"Plain tea contains no lactose. Milk additions can introduce lactose."
-
-  },
-
-  {
-
-    name:"Fruit Juice",category:"Drinks",
-
-    aliases:["juice","orange juice"],
-
-    status:"safe",
-
-    title:"Usually Lactose-Free",
-
-    info:"Pure fruit juice contains no lactose. Check mixed drinks and added ingredients."
-
-  }
+  {name:"Potatoes",category:"Fruits and Vegetables",status:"Lactose-free",level:"safe",details:"Plain potatoes do not contain lactose. Watch out for butter or cream additions."}
 
 ];
 
-/* BASIC FUNCTIONS */
+let favorites = JSON.parse(localStorage.getItem("lcFavorites") || "[]");
 
-function normalize(value) {
+let recents = JSON.parse(localStorage.getItem("lcRecents") || "[]");
 
-  return value.toLowerCase()
+let diary = JSON.parse(localStorage.getItem("lcDiary") || "[]");
 
-    .replace(/[^a-z0-9\s]/g," ")
+function saveData(){
 
-    .replace(/\s+/g," ")
+  localStorage.setItem("lcFavorites",JSON.stringify(favorites));
 
-    .trim();
+  localStorage.setItem("lcRecents",JSON.stringify(recents));
 
-}
-
-function escapeHTML(value) {
-
-  return String(value).replace(/[&<>"']/g, c => ({
-
-    "&":"&amp;",
-
-    "<":"&lt;",
-
-    ">":"&gt;",
-
-    '"':"&quot;",
-
-    "'":"&#39;"
-
-  })[c]);
+  localStorage.setItem("lcDiary",JSON.stringify(diary));
 
 }
 
-function getFood(query) {
+function showPage(id,button){
 
-  const q = normalize(query);
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
 
-  return foods.find(food =>
+  const page=document.getElementById(id);
 
-    normalize(food.name) === q ||
+  if(page) page.classList.add("active");
 
-    food.aliases.some(alias => normalize(alias) === q)
+  document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
+
+  const selected=button || document.querySelector(`nav button[data-page="${id}"]`);
+
+  if(selected) selected.classList.add("active");
+
+  if(id==="diary") renderDiary();
+
+  if(id==="home") renderHomeLists();
+
+}
+
+function statusTag(level){
+
+  if(level==="safe") return '<span class="tag safe">Usually lactose-free</span>';
+
+  if(level==="avoid") return '<span class="tag avoid">Likely contains lactose</span>';
+
+  return '<span class="tag caution">Check ingredients</span>';
+
+}
+
+function escapeHTML(value){
+
+  return String(value).replace(/[&<>"']/g,char=>({
+
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+
+  }[char]));
+
+}
+
+function renderFoodDatabase(){
+
+  const search=(document.getElementById("foodSearch")?.value || "").toLowerCase();
+
+  const category=document.getElementById("foodCategory")?.value || "all";
+
+  const filtered=foods.filter(food=>
+
+    food.name.toLowerCase().includes(search) &&
+
+    (category==="all" || food.category===category)
 
   );
 
-}
+  document.getElementById("foodList").innerHTML=filtered.map(food=>`
 
-function badgeClass(status) {
+    <div class="food-card">
 
-  return status === "safe" ? "safe" :
+      <h3>${escapeHTML(food.name)}</h3>
 
-    status === "danger" ? "danger" :
+      ${statusTag(food.level)}
 
-    status === "warning" ? "warning" : "neutral";
+      <p class="muted">${escapeHTML(food.category)}</p>
 
-}
+      <p>${escapeHTML(food.details)}</p>
 
-function badgeText(status) {
+      <div class="food-actions">
 
-  return status === "safe" ? "Generally Lactose-Free" :
+        <button class="secondary" onclick="checkFood('${escapeHTML(food.name)}')">Check food</button>
 
-    status === "danger" ? "Usually Contains Lactose" :
+        <button class="secondary" onclick="toggleFavorite('${escapeHTML(food.name)}')">
 
-    status === "warning" ? "Check Ingredients" : "Uncertain";
-
-}
-
-/* PAGE NAVIGATION */
-
-function showPage(id,button) {
-
-  document.querySelectorAll(".page").forEach(page => {
-
-    page.classList.remove("active");
-
-  });
-
-  const target = document.getElementById(id);
-
-  if(target) target.classList.add("active");
-
-  document.querySelectorAll("nav button").forEach(btn => {
-
-    btn.classList.remove("active");
-
-  });
-
-  if(button) {
-
-    button.classList.add("active");
-
-  } else {
-
-    const navButton = document.querySelector(
-
-      'nav button[data-page="' + id + '"]'
-
-    );
-
-    if(navButton) navButton.classList.add("active");
-
-  }
-
-  if(id === "foods") renderFoodDatabase();
-
-  if(id === "diary") renderEntries();
-
-  if(id === "home") renderHomeLists();
-
-  window.scrollTo({top:0,behavior:"smooth"});
-
-}
-
-/* FOOD CHECKER */
-
-function checkFood() {
-
-  const input = document.getElementById("foodSearch");
-
-  const query = input.value.trim();
-
-  const result = document.getElementById("homeResult");
-
-  if(!query) {
-
-    result.innerHTML = '<div class="result">Please enter a food name.</div>';
-
-    return;
-
-  }
-
-  const food = getFood(query);
-
-  saveRecent(query);
-
-  if(food) {
-
-    result.innerHTML = `
-
-      <div class="result">
-
-        <span class="tag ${badgeClass(food.status)}">
-
-          ${escapeHTML(food.title)}
-
-        </span>
-
-        <h3>${escapeHTML(food.name)}</h3>
-
-        <p>${escapeHTML(food.info)}</p>
-
-        <small>Category: ${escapeHTML(food.category)}</small>
-
-        <div class="result-actions">
-
-          <button class="secondary" onclick="toggleFavorite('${escapeHTML(food.name)}')">
-
-            ⭐ Save Favorite
-
-          </button>
-
-          <button class="secondary" onclick="openFoodAnalyzer('${escapeHTML(food.name)}')">
-
-            Check Ingredients
-
-          </button>
-
-        </div>
-
-        <p><small>General food guidance only. Actual recipes and products may differ.</small></p>
-
-      </div>
-
-    `;
-
-  } else {
-
-    result.innerHTML = `
-
-      <div class="result">
-
-        <span class="tag neutral">Not in Database</span>
-
-        <h3>${escapeHTML(query)}</h3>
-
-        <p>We don't have enough information about this food yet.</p>
-
-        <p>Check the ingredient label for lactose and milk-derived ingredients.</p>
-
-        <button class="secondary" onclick="showPage('analyzer')">
-
-          Analyze an ingredient list
+          ${favorites.includes(food.name)?"★ Saved":"☆ Favorite"}
 
         </button>
 
       </div>
 
-    `;
+    </div>
 
-  }
+  `).join("") || "<p>No foods found.</p>";
+
+  document.getElementById("foodCount").textContent=foods.length;
+
+  document.getElementById("favoriteCount").textContent=favorites.length;
+
+  document.getElementById("diaryCount").textContent=diary.length;
+
+}
+
+function checkFood(name){
+
+  const food=foods.find(f=>f.name===name);
+
+  if(!food)return;
+
+  recents=[name,...recents.filter(n=>n!==name)].slice(0,6);
+
+  saveData();
 
   renderHomeLists();
 
-}
+  document.getElementById("ingredientsInput").value=
 
-document.getElementById("foodSearch").addEventListener("keydown",e => {
+    food.name + ": " + food.details;
 
-  if(e.key === "Enter") checkFood();
+  showPage("analyzer");
 
-});
+  document.getElementById("ingredientResult").textContent=
 
-/* SEARCH SUGGESTIONS */
+    food.name + "\n" + food.status + "\n\n" + food.details +
 
-function loadSuggestions() {
-
-  const list = document.getElementById("foodSuggestions");
-
-  list.innerHTML = foods.map(food =>
-
-    `<option value="${escapeHTML(food.name)}"></option>`
-
-  ).join("");
+    "\n\nThis is a general estimate. Check the actual recipe or product label.";
 
 }
 
-/* RECENT SEARCHES */
+function toggleFavorite(name){
 
-function getRecent() {
+  if(favorites.includes(name)){
 
-  try {
+    favorites=favorites.filter(n=>n!==name);
 
-    return JSON.parse(localStorage.getItem("lactoRecent") || "[]");
-
-  } catch {
-
-    return [];
-
-  }
-
-}
-
-function saveRecent(name) {
-
-  let recent = getRecent();
-
-  recent = [name,...recent.filter(x => normalize(x) !== normalize(name))];
-
-  localStorage.setItem("lactoRecent",JSON.stringify(recent.slice(0,8)));
-
-}
-
-function renderRecent() {
-
-  const container = document.getElementById("recentFoods");
-
-  const recent = getRecent();
-
-  if(!recent.length) {
-
-    container.innerHTML = '<div class="empty">Your recent searches will appear here.</div>';
-
-    return;
-
-  }
-
-  container.innerHTML = recent.map(name => `
-
-    <div class="food-item" onclick="searchAgain('${escapeHTML(name)}')">
-
-      <strong>🔎 ${escapeHTML(name)}</strong>
-
-      <p>Tap to check again</p>
-
-    </div>
-
-  `).join("");
-
-}
-
-function searchAgain(name) {
-
-  showPage("home");
-
-  document.getElementById("foodSearch").value = name;
-
-  checkFood();
-
-}
-
-/* FAVORITES */
-
-function getFavorites() {
-
-  try {
-
-    return JSON.parse(localStorage.getItem("lactoFavorites") || "[]");
-
-  } catch {
-
-    return [];
-
-  }
-
-}
-
-function toggleFavorite(name) {
-
-  let favorites = getFavorites();
-
-  if(favorites.includes(name)) {
-
-    favorites = favorites.filter(x => x !== name);
-
-  } else {
+  }else{
 
     favorites.push(name);
 
   }
 
-  localStorage.setItem("lactoFavorites",JSON.stringify(favorites));
-
-  renderHomeLists();
-
-  alert("Favorites updated!");
-
-}
-
-function renderFavorites() {
-
-  const container = document.getElementById("favoriteFoods");
-
-  const favorites = getFavorites();
-
-  if(!favorites.length) {
-
-    container.innerHTML = '<div class="empty">Save foods you check often to find them here.</div>';
-
-    return;
-
-  }
-
-  container.innerHTML = favorites.map(name => `
-
-    <div class="food-item" onclick="searchAgain('${escapeHTML(name)}')">
-
-      <strong>⭐ ${escapeHTML(name)}</strong>
-
-      <p>Tap to view food information</p>
-
-    </div>
-
-  `).join("");
-
-}
-
-function renderHomeLists() {
-
-  renderRecent();
-
-  renderFavorites();
-
-}
-
-/* FOOD DATABASE PAGE */
-
-let selectedCategory = "All";
-
-function filterCategory(category,button) {
-
-  selectedCategory = category;
-
-  document.querySelectorAll(".category-button").forEach(btn => {
-
-    btn.classList.remove("active");
-
-  });
-
-  if(button) button.classList.add("active");
+  saveData();
 
   renderFoodDatabase();
 
+  renderHomeLists();
+
 }
 
-function renderFoodDatabase() {
+function renderHomeLists(){
 
-  const query = normalize(
+  const makeCards=names=>names.map(name=>{
 
-    document.getElementById("databaseSearch").value
+    const food=foods.find(f=>f.name===name);
 
-  );
+    if(!food)return "";
 
-  const filtered = foods.filter(food => {
+    return `<div class="food-card">
 
-    const matchesCategory =
+      <h3>${escapeHTML(food.name)}</h3>
 
-      selectedCategory === "All" ||
+      ${statusTag(food.level)}
 
-      food.category === selectedCategory;
+      <p>${escapeHTML(food.details)}</p>
 
-    const searchable = normalize(
+      <button class="secondary" onclick="checkFood('${escapeHTML(food.name)}')">View</button>
 
-      food.name + " " + food.category + " " + food.aliases.join(" ")
+    </div>`;
 
-    );
+  }).join("");
 
-    return matchesCategory && searchable.includes(query);
+  document.getElementById("recentList").innerHTML=
 
-  });
+    makeCards(recents) || '<p class="muted">Your recent searches will appear here.</p>';
 
-  const container = document.getElementById("databaseResults");
+  document.getElementById("homeFavorites").innerHTML=
 
-  if(!filtered.length) {
+    makeCards(favorites) || '<p class="muted">Save foods to see them here.</p>';
 
-    container.innerHTML = '<div class="empty">No matching foods found.</div>';
+  document.getElementById("favoriteCount").textContent=favorites.length;
+
+  document.getElementById("diaryCount").textContent=diary.length;
+
+}
+
+function analyzeIngredients(){
+
+  const input=document.getElementById("ingredientsInput").value.trim();
+
+  const output=document.getElementById("ingredientResult");
+
+  if(!input){
+
+    output.textContent="Please enter an ingredient list first.";
 
     return;
 
   }
 
-  container.innerHTML = filtered.map(food => `
+  const terms=[
 
-    <div class="food-item" onclick="viewDatabaseFood('${escapeHTML(food.name)}')">
+    {name:"lactose",words:["lactose"]},
 
-      <strong>${escapeHTML(food.name)}</strong>
+    {name:"milk powder",words:["milk powder","whole milk powder","skimmed milk powder","skim milk powder"]},
 
-      <p>${escapeHTML(food.category)}</p>
+    {name:"whey",words:["whey","whey powder","whey concentrate"]},
 
-      <span class="tag ${badgeClass(food.status)}">
+    {name:"milk solids",words:["milk solids","milk solids non-fat"]},
 
-        ${escapeHTML(badgeText(food.status))}
+    {name:"condensed milk",words:["condensed milk"]},
 
-      </span>
+    {name:"evaporated milk",words:["evaporated milk"]},
 
-    </div>
+    {name:"casein/caseinate",words:["casein","caseinate","sodium caseinate","calcium caseinate"]},
 
-  `).join("");
+    {name:"milk protein",words:["milk protein","milk protein concentrate","milk protein isolate"]},
 
-}
+    {name:"cream",words:["cream","milk cream"]},
 
-function viewDatabaseFood(name) {
-
-  const food = getFood(name);
-
-  if(!food) return;
-
-  showPage("home");
-
-  document.getElementById("foodSearch").value = name;
-
-  checkFood();
-
-}
-
-/* INGREDIENT ANALYZER */
-
-function analyzeIngredients() {
-
-  const raw = document.getElementById("ingredientInput").value.trim();
-
-  const product = document.getElementById("productName").value.trim();
-
-  const output = document.getElementById("analysisResult");
-
-  if(!raw) {
-
-    output.innerHTML = '<div class="result">Please enter an ingredient list first.</div>';
-
-    return;
-
-  }
-
-  const text = normalize(raw);
-
-  const terms = [
-
-    {
-
-      words:["lactose"],
-
-      title:"Lactose",
-
-      explanation:"Lactose is milk sugar. Its presence means the product contains lactose."
-
-    },
-
-    {
-
-      words:["milk powder","skimmed milk powder","whole milk powder","dry milk"],
-
-      title:"Milk Powder",
-
-      explanation:"Milk powder commonly contains lactose."
-
-    },
-
-    {
-
-      words:["whey powder","whey solids","whey"],
-
-      title:"Whey",
-
-      explanation:"Whey ingredients often contain lactose, although amounts vary."
-
-    },
-
-    {
-
-      words:["milk solids","milk solid"],
-
-      title:"Milk Solids",
-
-      explanation:"Milk solids may contain lactose."
-
-    },
-
-    {
-
-      words:["condensed milk"],
-
-      title:"Condensed Milk",
-
-      explanation:"Traditional condensed milk contains lactose."
-
-    },
-
-    {
-
-      words:["evaporated milk"],
-
-      title:"Evaporated Milk",
-
-      explanation:"Ordinary evaporated milk contains lactose."
-
-    },
-
-    {
-
-      words:["buttermilk"],
-
-      title:"Buttermilk",
-
-      explanation:"Traditional buttermilk is a dairy ingredient and contains lactose."
-
-    },
-
-    {
-
-      words:["cream","milk cream"],
-
-      title:"Cream",
-
-      explanation:"Dairy cream contains varying amounts of lactose."
-
-    },
-
-    {
-
-      words:["milk","cow milk"],
-
-      title:"Milk",
-
-      explanation:"Milk is a source of lactose. This match can also appear inside compound ingredient names."
-
-    },
-
-    {
-
-      words:["casein","caseinate"],
-
-      title:"Casein / Caseinate",
-
-      explanation:"These are milk proteins. They are important for milk allergy, but do not necessarily indicate lactose."
-
-    },
-
-    {
-
-      words:["butter"],
-
-      title:"Butter",
-
-      explanation:"Butter usually contains very little lactose, but it is dairy-derived."
-
-    }
+    {name:"buttermilk",words:["buttermilk"]}
 
   ];
 
-  let found = [];
+  const lower=input.toLowerCase();
 
-  terms.forEach(term => {
+  const found=terms.filter(term=>term.words.some(word=>lower.includes(word)));
 
-    term.words.forEach(word => {
+  const otherTerms=["lactic acid","calcium lactate","sodium lactate"];
 
-      const escaped = word.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
+  const notLactose=otherTerms.filter(term=>lower.includes(term));
 
-      const pattern = new RegExp("(^| )" + escaped + "($| )","i");
+  let message="INGREDIENT CHECK RESULTS\n\n";
 
-      if(pattern.test(text) && !found.some(x => x.title === term.title)) {
+  if(found.length){
 
-        found.push(term);
+    message+="Possible milk-derived or lactose-containing ingredients found:\n";
 
-      }
+    found.forEach(item=>message+="• "+item.name+"\n");
 
-    });
+    message+="\nThis product may contain lactose. The exact amount cannot be determined from the ingredient list alone.";
 
-  });
+  }else{
 
-  const productName = product ?
-
-    `<h3>${escapeHTML(product)}</h3>` : "";
-
-  if(found.some(x => x.title === "Lactose")) {
-
-    output.innerHTML = `
-
-      <div class="result">
-
-        <span class="tag danger">Lactose Identified</span>
-
-        ${productName}
-
-        <p>The ingredient list includes lactose.</p>
-
-        ${found.map(x => `<p><strong>${escapeHTML(x.title)}:</strong> ${escapeHTML(x.explanation)}</p>`).join("")}
-
-      </div>
-
-    `;
-
-  } else if(found.some(x =>
-
-    ["Milk Powder","Whey","Milk Solids","Condensed Milk",
-
-    "Evaporated Milk","Buttermilk","Cream","Milk"].includes(x.title)
-
-  )) {
-
-    output.innerHTML = `
-
-      <div class="result">
-
-        <span class="tag danger">Possible Lactose Source Found</span>
-
-        ${productName}
-
-        <p>These ingredients may contain lactose:</p>
-
-        ${found.map(x => `<p><strong>${escapeHTML(x.title)}:</strong> ${escapeHTML(x.explanation)}</p>`).join("")}
-
-      </div>
-
-    `;
-
-  } else if(found.length) {
-
-    output.innerHTML = `
-
-      <div class="result">
-
-        <span class="tag warning">Milk Protein Identified</span>
-
-        ${productName}
-
-        ${found.map(x => `<p><strong>${escapeHTML(x.title)}:</strong> ${escapeHTML(x.explanation)}</p>`).join("")}
-
-        <p>Milk proteins matter for milk allergy, which is different from lactose intolerance.</p>
-
-      </div>
-
-    `;
-
-  } else {
-
-    output.innerHTML = `
-
-      <div class="result">
-
-        <span class="tag neutral">No Listed Lactose Sources Detected</span>
-
-        ${productName}
-
-        <p>The checker did not find the specific terms it recognizes.</p>
-
-        <p>This does NOT prove that the product is lactose-free. Review the full label and manufacturer information.</p>
-
-      </div>
-
-    `;
+    message+="No common lactose-related ingredients were detected by this basic checker.\n\nThis does NOT guarantee that the product is lactose-free.";
 
   }
 
-}
+  if(notLactose.length){
 
-function openFoodAnalyzer(name) {
+    message+="\n\nOther ingredients detected:\n";
 
-  showPage("analyzer");
+    notLactose.forEach(item=>message+="• "+item+" (not the same as lactose)");
 
-  document.getElementById("productName").value = name;
+  }
+
+  message+="\n\nAlways check the allergen statement and verify the actual product label.";
+
+  output.textContent=message;
 
 }
 
 /* FOOD DIARY */
 
-function getEntries() {
+function addDiaryEntry(){
 
-  try {
+  const food=document.getElementById("diaryFood").value.trim();
 
-    return JSON.parse(localStorage.getItem("lactoDiary") || "[]");
+  const symptom=document.getElementById("diarySymptom").value;
 
-  } catch {
+  const notes=document.getElementById("diaryNotes").value.trim();
 
-    return [];
+  if(!food){
 
-  }
-
-}
-
-function saveMeal() {
-
-  const meal = document.getElementById("meal").value.trim();
-
-  const symptoms = document.getElementById("symptoms").value.trim();
-
-  if(!meal) {
-
-    alert("Please enter a food first.");
+    alert("Please enter the food or drink.");
 
     return;
 
   }
 
-  const entries = getEntries();
+  diary.unshift({
 
-  entries.unshift({
+    id:Date.now(),
 
-    meal:meal,
+    food,
 
-    symptoms:symptoms,
+    symptom,
+
+    notes,
 
     date:new Date().toLocaleString()
 
   });
 
-  localStorage.setItem("lactoDiary",JSON.stringify(entries));
+  saveData();
 
-  document.getElementById("meal").value = "";
+  document.getElementById("diaryFood").value="";
 
-  document.getElementById("symptoms").value = "";
+  document.getElementById("diaryNotes").value="";
 
-  renderEntries();
+  renderDiary();
 
-  alert("Entry saved!");
+  renderHomeLists();
 
 }
 
-function renderEntries() {
+function deleteDiaryEntry(id){
 
-  const entries = getEntries();
+  diary=diary.filter(entry=>entry.id!==id);
 
-  const container = document.getElementById("entries");
+  saveData();
 
-  if(!entries.length) {
+  renderDiary();
 
-    container.innerHTML = '<div class="empty">No entries yet. Start recording your meals!</div>';
+  renderHomeLists();
+
+}
+
+function renderDiary(){
+
+  const container=document.getElementById("diaryEntries");
+
+  if(!diary.length){
+
+    container.innerHTML='<p class="muted">No diary entries yet.</p>';
 
     return;
 
   }
 
-  container.innerHTML = entries.map((entry,index) => `
+  container.innerHTML=diary.map(entry=>`
 
-    <div class="diary-entry">
+    <div class="food-card" style="margin-bottom:12px">
 
-      <strong>${escapeHTML(entry.meal)}</strong>
+      <strong>${escapeHTML(entry.food)}</strong>
 
-      <p>${escapeHTML(entry.symptoms || "No observations recorded.")}</p>
+      <p class="muted">${escapeHTML(entry.date)}</p>
 
-      <small>${escapeHTML(entry.date)}</small>
+      <p>Symptoms: ${escapeHTML(entry.symptom)}</p>
 
-      <button class="small-button" onclick="deleteEntry(${index})">Delete entry</button>
+      <p>${escapeHTML(entry.notes)}</p>
+
+      <button class="danger" onclick="deleteDiaryEntry(${entry.id})">Delete</button>
 
     </div>
 
@@ -2642,25 +1418,197 @@ function renderEntries() {
 
 }
 
-function deleteEntry(index) {
+/* LACTOCHECK AI */
 
-  const entries = getEntries();
+const AI_ENDPOINT="https://lactocheck-ai.adrianeasuncion15.workers.dev/";
 
-  entries.splice(index,1);
+function updateAIMode(){
 
-  localStorage.setItem("lactoDiary",JSON.stringify(entries));
+  const mode=document.getElementById("aiMode").value;
 
-  renderEntries();
+  const description=document.getElementById("aiDescription");
+
+  const photo=document.getElementById("aiPhotoArea");
+
+  const preferences=document.getElementById("aiPreferencesArea");
+
+  const message=document.getElementById("aiMessage");
+
+  photo.classList.toggle("hidden",mode!=="food");
+
+  preferences.classList.toggle("hidden",mode!=="personalized");
+
+  const descriptions={
+
+    chat:"Ask questions about lactose intolerance, food, ingredients, and everyday food choices.",
+
+    food:"Upload a photo of a meal or food product. AI will identify what it can see and discuss possible lactose sources.",
+
+    ingredients:"Paste an ingredient list to get a more detailed AI analysis of possible lactose sources.",
+
+    personalized:"Tell AI about your preferences and what you want to eat. It can suggest suitable food options."
+
+  };
+
+  const placeholders={
+
+    chat:"Example: Can people with lactose intolerance eat cheese?",
+
+    food:"Optional: Tell AI what food or product is shown.",
+
+    ingredients:"Paste the complete ingredient list here.",
+
+    personalized:"Example: Suggest affordable Filipino breakfast meals without dairy."
+
+  };
+
+  description.textContent=descriptions[mode];
+
+  message.placeholder=placeholders[mode];
+
+}
+
+async function askAI(){
+
+  const mode=document.getElementById("aiMode").value;
+
+  const message=document.getElementById("aiMessage").value.trim();
+
+  const preferences=document.getElementById("aiPreferences").value.trim();
+
+  const imageFile=document.getElementById("aiImage").files[0];
+
+  const result=document.getElementById("aiResult");
+
+  const button=document.getElementById("aiButton");
+
+  if(mode==="food" && !imageFile){
+
+    result.textContent="Please upload a food photo first.";
+
+    return;
+
+  }
+
+  if(mode!=="food" && !message){
+
+    result.textContent="Please enter a message first.";
+
+    return;
+
+  }
+
+  if(imageFile && imageFile.size>5*1024*1024){
+
+    result.textContent="Your image is too large. Please choose an image smaller than 5 MB.";
+
+    return;
+
+  }
+
+  button.disabled=true;
+
+  button.textContent="Thinking...";
+
+  result.textContent="LactoCheck AI is analyzing your request. Please wait...";
+
+  try{
+
+    let imageData="";
+
+    if(mode==="food" && imageFile){
+
+      if(!["image/jpeg","image/png","image/webp"].includes(imageFile.type)){
+
+        throw new Error("Please upload a JPG, PNG, or WebP image.");
+
+      }
+
+      imageData=await new Promise((resolve,reject)=>{
+
+        const reader=new FileReader();
+
+        reader.onload=()=>resolve(reader.result);
+
+        reader.onerror=()=>reject(new Error("Unable to read the image."));
+
+        reader.readAsDataURL(imageFile);
+
+      });
+
+    }
+
+    const response=await fetch(AI_ENDPOINT,{
+
+      method:"POST",
+
+      headers:{"Content-Type":"application/json"},
+
+      body:JSON.stringify({
+
+        message:message,
+
+        image:imageData,
+
+        mode:mode,
+
+        preferences:preferences
+
+      })
+
+    });
+
+    const data=await response.json();
+
+    if(!response.ok){
+
+      throw new Error(data.error || data.message || "The AI service returned an error.");
+
+    }
+
+    if(!data.answer){
+
+      throw new Error("The AI returned an empty response. Please try again.");
+
+    }
+
+    result.textContent=data.answer;
+
+  }catch(error){
+
+    result.textContent=
+
+      "Sorry, LactoCheck AI could not complete your request.\n\n"+
+
+      "Error: "+error.message+
+
+      "\n\nPlease check your internet connection and try again.";
+
+  }finally{
+
+    button.disabled=false;
+
+    button.textContent="Ask LactoCheck AI ✨";
+
+  }
 
 }
 
 /* STARTUP */
 
-loadSuggestions();
+function initialize(){
 
-renderFoodDatabase();
+  renderFoodDatabase();
 
-renderHomeLists();
+  renderHomeLists();
+
+  renderDiary();
+
+  updateAIMode();
+
+}
+
+initialize();
 
 </script>
 
